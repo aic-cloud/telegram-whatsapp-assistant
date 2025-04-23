@@ -46,7 +46,8 @@ Reply options:"""
         reply_with_buttons = "\n\n".join([f"Option {i+1}:\n{text.strip()}" for i, text in enumerate(options)])
         update.message.reply_text(reply_with_buttons, reply_markup=InlineKeyboardMarkup(keyboard))
     except Exception as e:
-        print("❌ Error:", e)
+        print("❌ Exception occurred while calling OpenAI:")
+        traceback.print_exc()  # Shows the full error trace
         update.message.reply_text("Error generating options. Please try again.")
 
 def handle_callback(update: Update, context: CallbackContext):
